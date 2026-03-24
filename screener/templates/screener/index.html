@@ -1,0 +1,29 @@
+{% extends "screener/base.html" %} {% block content %} {% if error %}
+<p class="error">{{ error }}</p>
+{% endif %}
+<form method="POST" enctype="multipart/form-data" action="{% url 'result' %}">
+  {% csrf_token %}
+
+  <div>
+    <label for="resume">Upload Resume (PDF only):</label><br />
+    <input type="file" id="resume" name="resume" accept=".pdf" required />
+  </div>
+
+  <br />
+
+  <div>
+    <label for="job_description">Paste Job Description:</label><br />
+    <textarea
+      id="job_description"
+      name="job_description"
+      placeholder="Paste job description here..."
+      required
+    ></textarea>
+  </div>
+
+  <br />
+
+  <button type="submit">Submit</button>
+</form>
+
+{% endblock %}
