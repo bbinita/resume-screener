@@ -24,18 +24,12 @@ stop_words = set(stopwords.words('english'))
 lemmatizer = WordNetLemmatizer()
 
 def preprocess(text):
-    
     text = text.lower()
-    text = text.replace('-', '')
     text = re.sub(r'[^a-z0-9\s]', ' ', text)
-    
+    words = text.split()   # MUCH faster than word_tokenize
 
-    # text = text.translate(str.maketrans('', '', string.punctuation))
-    words = word_tokenize(text)
-
-    words = [word for word in words if word not in stop_words]
-
-    words = [lemmatizer.lemmatize(word) for word in words]
+    words = [w for w in words if w not in stop_words]
+    words = [lemmatizer.lemmatize(w) for w in words]
 
     return " ".join(words)
 

@@ -1,11 +1,23 @@
-{% extends "screener/base.html" %} {% block content %}
-<h1>Results</h1>
-<div class="score">Match Score: <span>{{ results.score }}%</span></div>
-<p class="keywords-title">Missing Keywords</p>
-<div class="keyword-list">
-  {% for word in results.missing_keywords %}
-  <p>{{ word }}</p>
-  {% endfor %}
+{% extends "screener/base.html" %} {% block title %}Results | Resume
+Screener{%endblock %} {% block content %}
+<h1 class="site-title">Resume Screener</h1>
+
+<div class="result-card">
+  <h2>Results</h2>
+
+  <div
+    class="score {% if results.score >= 70 %}score-high{% elif results.score >= 40 %}score-mid{% else %}score-low{% endif %}"
+  >
+    Match Score: <span>{{ results.score }}%</span>
+  </div>
+
+  <p class="keywords-title">Missing Keywords</p>
+  <div class="keyword-list">
+    {% for word in results.missing_keywords %}
+    <p>{{ word }}</p>
+    {% endfor %}
+  </div>
+
+  <a href="{% url 'index' %}" class="back-link">← Analyze another resume</a>
 </div>
-<a href="{% url 'index' %}" class="back-link">← Analyze another resume</a>
 {% endblock %}

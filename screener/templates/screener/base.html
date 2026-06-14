@@ -2,10 +2,12 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Title</title>
-    <link rel="stylesheet" href="{% static 'screener/style.css' %}" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% block title %}Resume Screener{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'screener/style.css' %}?v=3" />
   </head>
   <body>
-    {% block content %} {% endblock %}
+    <div class="container">{% block content %} {% endblock %}</div>
   </body>
 </html>
